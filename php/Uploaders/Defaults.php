@@ -2,17 +2,24 @@
 
 namespace Plupload\Uploaders;
 
+/**
+ * This file is a part of Plupload component for Nette Framework.
+ *
+ * @author     Nikolas Tsiongas
+ * @package    Plupload component
+ * @license    New BSD License
+ */
 class Defaults extends \Nette\Object implements IUploader
 {
 
-	// Callback called when file is uploaded
-	public $onSuccess;
+    // Callback called when file is uploaded
+    public $onSuccess;
 
-	// Directory for temp files
-	public $tempUploadsDir;
+    // Directory for temp files
+    public $tempUploadsDir;
 
-	// Usefull when uploading files with the same names from two components at the same time
-	public $token = 'eufwd';
+    // Usefull when uploading files with the same names from two components at the same time
+    public $token = 'eufwd';
 
 
     /*********** Is ready? ***********/
@@ -23,6 +30,7 @@ class Defaults extends \Nette\Object implements IUploader
         }
         return true;
     }
+
 
     /*********** Setters ***********/
     public function setTempUploadsDir($dir)
@@ -61,9 +69,9 @@ class Defaults extends \Nette\Object implements IUploader
     }
 
 
-	/*********** Upload handler ***********/
-	public function upload()
-	{
+    /*********** Upload handler ***********/
+    public function upload()
+    {
         $this->isReady();
 
         if(empty($this->tempUploadsDir)) {
@@ -179,6 +187,6 @@ class Defaults extends \Nette\Object implements IUploader
                 @unlink($filePath);
         }
 
-	}
+    }
 
 }

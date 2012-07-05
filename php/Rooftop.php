@@ -2,128 +2,135 @@
 
 namespace Plupload;
 
+/**
+ * This file is a part of Plupload component for Nette Framework.
+ *
+ * @author     Nikolas Tsiongas
+ * @package    Plupload component
+ * @license    New BSD License
+ */
 class Rooftop extends \Nette\Object
 {
 
-	// Full path to front directory
-	private $wwwDir;
+    // Full path to front directory
+    private $wwwDir;
 
-	// Browser path to front directory
-	private $basePath;
+    // Browser path to front directory
+    private $basePath;
 
-	// Where js etc. will be stored for browser to load (WWW_DIR)
-	private $tempLibsDir;
+    // Where js etc. will be stored for browser to load (WWW_DIR)
+    private $tempLibsDir;
 
-	// Settings for js component
-	private $pluploadSettings;
+    // Settings for js component
+    private $pluploadSettings;
 
-	// IUploader handles upload request
-	private $uploader;
+    // IUploader handles upload request
+    private $uploader;
 
-	// Js and Css will be loaded automatically
-	private $useMagic = true;
+    // Js and Css will be loaded automatically
+    private $useMagic = true;
 
-	public function getComponent($class = 'Plupload\Components\JQueryUIWidget')
-	{
-		return new $class($this);
-	}
-
-
-	/*********** Magic ***********/
-	public function isMagical()
-	{
-		return $this->useMagic;
-	}
-
-	public function disableMagic()
-	{
-		$this->useMagic = false;
-		return $this;
-	}
+    public function getComponent($class = 'Plupload\Components\JQueryUIWidget')
+    {
+        return new $class($this);
+    }
 
 
-	/*********** Setters ***********/
-	public function setWwwDir($dir)
-	{
-		$this->wwwDir = $dir;
-		return $this;
-	}
+    /*********** Magic ***********/
+    public function isMagical()
+    {
+        return $this->useMagic;
+    }
 
-	public function setBasePath($basePath)
-	{
-		$this->basePath = $basePath;
-		return $this;
-	}
-
-	public function setTempLibsDir($dir)
-	{
-		$this->tempLibsDir = $this->returnDir($dir);
-		return $this;
-	}
-
-	public function setPluploadSettings(PluploadSettings $settings)
-	{
-		$this->pluploadSettings = $settings;
-		return $this;
-	}
-
-	public function setUploader(Uploaders\IUploader $uploader)
-	{
-		$this->uploader = $uploader;
-		return $this;
-	}
+    public function disableMagic()
+    {
+        $this->useMagic = false;
+        return $this;
+    }
 
 
-	/*********** Getters ***********/
-	public function getTempLibsDir()
-	{
-		if($this->isMagical()) {
-			if(!file_exists($this->tempLibsDir . '/copied.txt'))
-				self::copy(__DIR__ . '/../front', $this->tempLibsDir);
-		}
+    /*********** Setters ***********/
+    public function setWwwDir($dir)
+    {
+        $this->wwwDir = $dir;
+        return $this;
+    }
 
-		return $this->basePath.str_replace($this->wwwDir, '', $this->tempLibsDir);
-	}
+    public function setBasePath($basePath)
+    {
+        $this->basePath = $basePath;
+        return $this;
+    }
 
-	public function getPluploadSettings()
-	{
-		return $this->pluploadSettings;
-	}
+    public function setTempLibsDir($dir)
+    {
+        $this->tempLibsDir = $this->returnDir($dir);
+        return $this;
+    }
 
+    public function setPluploadSettings(PluploadSettings $settings)
+    {
+        $this->pluploadSettings = $settings;
+        return $this;
+    }
 
-	/*********** Shortcuts ***********/
-	public function createSettings($class = 'Plupload\PluploadSettings')
-	{
-		$settings = new $class;
-		$this->setPluploadSettings($settings);
-		return $settings;
-	}
-
-	public function createUploader($class = 'Plupload\Uploaders\Defaults')
-	{
-		$uploader = new $class;
-		$this->setUploader($uploader);
-		return $uploader;
-	}
-
-	/*********** Upload ***********/
-	public function upload()
-	{
-		$this->uploader->upload();
-	}
+    public function setUploader(Uploaders\IUploader $uploader)
+    {
+        $this->uploader = $uploader;
+        return $this;
+    }
 
 
-	/*********** Helpers ***********/
-	private function returnDir($dir)
-	{
-		if( is_dir($dir) ) {
-			return $dir;
-		} else {
-			if($this->isMagical())
-				mkdir($dir, 0, true);
-			return $dir;
-		}
-	}
+    /*********** Getters ***********/
+    public function getTempLibsDir()
+    {
+        if($this->isMagical()) {
+            if(!file_exists($this->tempLibsDir . '/copied.txt'))
+                self::copy(__DIR__ . '/../front', $this->tempLibsDir);
+        }
+
+        return $this->basePath.str_replace($this->wwwDir, '', $this->tempLibsDir);
+    }
+
+    public function getPluploadSettings()
+    {
+        return $this->pluploadSettings;
+    }
+
+
+    /*********** Shortcuts ***********/
+    public function createSettings($class = 'Plupload\PluploadSettings')
+    {
+        $settings = new $class;
+        $this->setPluploadSettings($settings);
+        return $settings;
+    }
+
+    public function createUploader($class = 'Plupload\Uploaders\Defaults')
+    {
+        $uploader = new $class;
+        $this->setUploader($uploader);
+        return $uploader;
+    }
+
+    /*********** Upload ***********/
+    public function upload()
+    {
+        $this->uploader->upload();
+    }
+
+
+    /*********** Helpers ***********/
+    private function returnDir($dir)
+    {
+        if( is_dir($dir) ) {
+            return $dir;
+        } else {
+            if($this->isMagical())
+                mkdir($dir, 0, true);
+            return $dir;
+        }
+    }
 
     static function copy($source, $dest, $overwrite = true) {
         $dir = opendir($source);

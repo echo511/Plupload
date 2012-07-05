@@ -2,6 +2,13 @@
 
 namespace Plupload;
 
+/**
+ * This file is a part of Plupload component for Nette Framework.
+ *
+ * @author     Nikolas Tsiongas
+ * @package    Plupload component
+ * @license    New BSD License
+ */
 class PluploadSettings extends \Nette\Object
 {
 
@@ -30,31 +37,31 @@ class PluploadSettings extends \Nette\Object
 
     public function setMaxFileSize($expr)
     {
-    	$this->maxFileSize = $expr;
-    	return $this;
+        $this->maxFileSize = $expr;
+        return $this;
     }
 
     public function setMaxChunkSize($expr)
     {
-    	$this->maxChunkSize = $expr;
-    	return $this;
+        $this->maxChunkSize = $expr;
+        return $this;
     }
 
 
     /*********** Getters ***********/
     public function getRuntimes()
     {
-    	return implode(",", $this->runtimes);
+        return implode(",", $this->runtimes);
     }
 
     public function getMaxFileSize()
     {
-    	return $this->maxFileSize;
+        return $this->maxFileSize;
     }
 
     public function getMaxChunkSize()
     {
-    	return $this->maxChunkSize;
+        return $this->maxChunkSize;
     }
 
 }
