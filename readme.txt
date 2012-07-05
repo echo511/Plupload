@@ -29,7 +29,7 @@ There is no need for including any extra JS or Css in head. Everything is done a
         $uploader->createUploader()
                  ->setTempUploadsDir(WWW_DIR . '/plupload511/tempDir') // Where should be placed temporaly files
                  ->setToken("ahoj") // Resolves file names collisions in temp directory
-                 ->setOnSuccess(array($this, 'tests')); // Callback when upload is successfull: returns Nette\Http\FileUpload
+                 ->setOnSuccess(array($this, 'tests')); // Callback when upload is successful: returns Nette\Http\FileUpload
 
         return $uploader->getComponent();
     }
