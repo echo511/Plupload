@@ -1,0 +1,33 @@
+<script type="text/javascript">
+    $(document).ready(function() {
+        // Setup gears version
+        $("#uploader-{!$token}").plupload({
+            // General settings
+            runtimes : {$pluploadSettings->getRuntimes()},
+            url : {link Upload!},
+            max_file_size : {$pluploadSettings->getMaxFilesize()},
+            headers: {'X-Requested-With': 'XMLHttpRequest'},
+            init : {
+                // Called when a file has finished uploading
+                FileUploaded: function(up, file, info) {
+                    var json = jQuery.parseJSON(info.response);
+                    $.nette.success(json);
+                }
+            },
+            chunk_size : {$pluploadSettings->getMaxChunkSize()},
+            flash_swf_url : "{!$tempLibsDir}/swf/plupload.flash.swf",
+            silverlight_xap_url : "{!$tempLibsDir}/xap/plupload.silverlight.xap"
+        });
+    });
+</script>
+
+<div class="plupload" id="uploader-{!$token}" style="width: 750px; height: 330px;">
+    There is no support for any of these: {$pluploadSettings->getRuntimes()}
+</div>
+
+{if $isMagical}
+    {!$libsComponent->registerJs('/js/plupload.full.js')}
+    {!$libsComponent->registerJs('/js/jquery.ui.plupload.js')}
+
+    {!$libsComponent->registerCss('/css/jquery.ui.plupload.css')}
+{/if}
