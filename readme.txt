@@ -1,6 +1,8 @@
 Basic implementation:
 
-There is no need for including any JS or Css in head. Everything is done automatically. If you prefer to do it by yourself then disable magic.
+Don't forget to load jQuery and jQuery UI manually.
+
+There is no need for including any extra JS or Css in head. Everything is done automatically. If you prefer to do it by yourself then disable magic.
 
 
     <?php
