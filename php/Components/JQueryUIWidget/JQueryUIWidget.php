@@ -1,6 +1,6 @@
 <?php
 
-namespace Plupload\Components;
+namespace Echo511\Plupload\Components\JQueryUIWidget;
 
 /**
  * This file is a part of Plupload component for Nette Framework.

@@ -1,6 +1,6 @@
 <?php
 
-namespace Plupload\Uploaders;
+namespace Echo511\Plupload\Uploaders;
 
 /**
  * This file is a part of Plupload component for Nette Framework.
