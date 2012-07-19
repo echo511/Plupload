@@ -23,7 +23,7 @@ class JQueryUIWidget extends \Nette\Application\UI\Control
 
 
     /*********** Init ***********/
-    public function __construct(\Plupload\Rooftop $rooftop)
+    public function __construct(\Echo511\Plupload\Rooftop $rooftop)
     {
         $this->rooftop = $rooftop;
         $this->_createTemplate();
@@ -36,14 +36,14 @@ class JQueryUIWidget extends \Nette\Application\UI\Control
     /*********** Only magic loading purposes ***********/
     public function attached($presenter)
     {
-        $components = $presenter->getComponents(true, 'Plupload\Components\Libs');
+        $components = $presenter->getComponents(true, 'Echo511\Plupload\Components\Libs\Libs');
         foreach($components as $component) {
             $this->libsComponent = $component;
             break;
         }
 
         if($this->libsComponent === null) {
-            $this->libsComponent = new \Plupload\Components\Libs($this, 'libs');
+            $this->libsComponent = new \Echo511\Plupload\Components\Libs\Libs($this, 'libs');
             $this->libsComponent->setTempLibsDir($this->rooftop->tempLibsDir);
         }
     }

@@ -30,7 +30,7 @@ class Rooftop extends \Nette\Object
     // Js and Css will be loaded automatically
     private $useMagic = true;
 
-    public function getComponent($class = 'Plupload\Components\JQueryUIWidget')
+    public function getComponent($class = 'Echo511\Plupload\Components\JQueryUIWidget\JQueryUIWidget')
     {
         return new $class($this);
     }
@@ -99,14 +99,14 @@ class Rooftop extends \Nette\Object
 
 
     /*********** Shortcuts ***********/
-    public function createSettings($class = 'Plupload\PluploadSettings')
+    public function createSettings($class = 'Echo511\Plupload\PluploadSettings')
     {
         $settings = new $class;
         $this->setPluploadSettings($settings);
         return $settings;
     }
 
-    public function createUploader($class = 'Plupload\Uploaders\Defaults')
+    public function createUploader($class = 'Echo511\Plupload\Uploaders\Defaults')
     {
         $uploader = new $class;
         $this->setUploader($uploader);
