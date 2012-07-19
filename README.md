@@ -15,7 +15,7 @@ Usage
     public function createComponentPlupload()
     {
         // Main object
-        $uploader = new Plupload\Rooftop();
+        $uploader = new Echo511\Plupload\Rooftop();
 
         // Use magic for loading Js and Css?
         // $uploader->disableMagic();
