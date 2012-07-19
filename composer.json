@@ -14,7 +14,8 @@
     },
     "autoload":{
         "psr-0":{
-            "Echo511\\Plupload":"php/"
+            "Echo511\\Plupload":"src/"
         }
-    }
+    },
+    "target-dir":"Echo511/Plupload"
 }

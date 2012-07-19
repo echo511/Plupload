@@ -86,7 +86,7 @@ class Rooftop extends \Nette\Object
     {
         if($this->isMagical()) {
             if(!file_exists($this->tempLibsDir . '/copied.txt'))
-                self::copy(__DIR__ . '/../front', $this->tempLibsDir);
+                self::copy(__DIR__ . '/front', $this->tempLibsDir);
         }
 
         return $this->basePath.str_replace($this->wwwDir, '', $this->tempLibsDir);
