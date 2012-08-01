@@ -1,5 +1,6 @@
 {
     "name":"echo511/plupload",
+    "type": "nette-addon",
     "description":"Plupload based MultipleFiles upload for Nette Framework",
     "keywords":["nette", "plupload", "multiple-upload"],
     "license":["BSD-3"],
@@ -10,12 +11,18 @@
     ],
     "require":{
         "php":">=5.3.2",
-        "nette/nette":"dev-master"
+        "nette/nette":"@dev",
+        "nette/addon-installer": "@dev"
     },
     "autoload":{
         "psr-0":{
             "Echo511\\Plupload":""
         }
     },
-    "target-dir":"Echo511/Plupload"
+    "target-dir":"Echo511/Plupload",
+    "extra": {
+        "nette-addon": {
+            "extras": [ "jQuery", "jQuery-UI" ]
+        }
+    }
 }
