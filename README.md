@@ -6,7 +6,7 @@ Installation
 
 Install using composer:
 ```sh
-$ composer require echo511/plupload:2.0
+$ composer require echo511/plupload:2.0.*
 ```
 
 Register compiler extension: Echo511\Plupload\DI\PluploadExtension
@@ -40,7 +40,7 @@ class HomePresenter extends Presenter
 			...
 		};
 		$plupload->onUploadComplete[] = function(UploadQueue $uploadQueue) {
-                        ...
+			...
 		};
 		return $plupload;
 	}
