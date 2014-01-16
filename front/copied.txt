@@ -1,3 +1,0 @@
-Do not delete this file when using magic loading for js and css.
-
-See Plupload\Rooftop::getTempLibsDir() for explanation.

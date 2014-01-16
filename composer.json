@@ -1,21 +1,28 @@
 {
-    "name":"echo511/plupload",
-    "description":"Plupload based MultipleFiles upload for Nette Framework",
-    "keywords":["nette", "plupload", "multiple-upload"],
-    "license":["BSD-3"],
-    "authors":[
-        {
-            "name":"Nikolas Tsiongas"
+        "name": "echo511/plupload",
+        "type": "library",
+        "description": "Plupload component for Nette Framework.",
+        "keywords": ["echo511", "nette", "plupload"],
+        "license": ["MIT"],
+        "authors": [
+                {
+                        "name": "Nikolas Tsiongas",
+                        "email": "ntsiongas@gmail.com",
+                        "homepage": "http://congi.cz"
+                }
+        ],
+        "require": {
+                "php": ">=5.4.0",
+		"nette/nette": "2.1.*"
+        },
+        "extra": {
+                "branch-alias": {
+                        "dev-master": "2.0-dev"
+                }
+        },
+        "autoload": {
+                "classmap": [
+                    "src/"
+                ]
         }
-    ],
-    "require":{
-        "php":">=5.3.2",
-        "nette/nette":"dev-master"
-    },
-    "autoload":{
-        "psr-0":{
-            "Echo511\\Plupload":""
-        }
-    },
-    "target-dir":"Echo511/Plupload"
 }

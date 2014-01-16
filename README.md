@@ -1,43 +1,49 @@
-Plupload component for Nette
+Plupload for Nette Framework
 ============================
 
-Implementation:
----------------
+Installation
+------------
 
-Don't forget to load jQuery and jQuery UI manually.
+Install using composer:
+```sh
+$ composer require echo511/plupload:2.0
+```
 
-There is no need for including any extra JS or Css in head. Everything is done automatically. If you prefer to do it by yourself then disable magic.
+Register compiler extension: Echo511\Plupload\DI\PluploadExtension
+
+Load javascript and css files required by plupload. Required javascript libraries are *jQuery, jQueryUI, plupload.full.js, jquery.ui.plupload.js*. Load corresponding css or style as you wish. Snapshots of required javascript, css assets can be found in assets folder.
+
+If you wish to use ajax and Nette snippets, use extension: http://addons.nette.org/cs/nette-ajax-js If you prefer your solution then you need to adjust the latte file.
 
 
 Usage
 -----
 
-    public function createComponentPlupload()
-    {
-        // Main object
-        $uploader = new Echo511\Plupload\Rooftop();
+In presenter like this:
 
-        // Use magic for loading Js and Css?
-        // $uploader->disableMagic();
+```php
+<?php
 
-        // Configuring paths
-        $uploader->setWwwDir(WWW_DIR) // Full path to your frontend directory
-                 ->setBasePath($this->template->basePath) // BasePath provided by Nette
-                 ->setTempLibsDir(WWW_DIR . '/plupload511/test'); // Full path to the location of plupload libs (js, css)
+use Nette\Application\UI\Presenter;
+use Echo511\Plupload\Entity\UploadQueue;
 
-        // Configuring plupload
-        $uploader->createSettings()
-                 ->setRuntimes(array('html5')) // Available: gears, flash, silverlight, browserplus, html5
-                 ->setMaxFileSize('1000mb')
-                 ->setMaxChunkSize('1mb'); // What is chunk you can find here: http://www.plupload.com/documentation.php
+class HomePresenter extends Presenter
+{
 
-        // Configuring uploader
-        $uploader->createUploader()
-                 ->setTempUploadsDir(WWW_DIR . '/plupload511/tempDir') // Where should be placed temporaly files
-                 ->setToken("ahoj") // Resolves file names collisions in temp directory
-                 ->setOnSuccess(array($this, 'tests')); // Callback when upload is successful: returns Nette\Http\FileUpload
+	/** @var \Echo511\Plupload\Control\IPluploadControlFactory @inject */
+	public $controlFactory;
 
-        return $uploader->getComponent();
-    }
+	public function createComponentPlupload()
+	{
+		$plupload = $this->controlFactory->create();
+		$plupload->onFileUploaded[] = function(UploadQueue $uploadQueue) {
+			...
+		};
+		$plupload->onUploadComplete[] = function(UploadQueue $uploadQueue) {
+                        ...
+		};
+		return $plupload;
+	}
 
-See the code for more intel...
+}
+```

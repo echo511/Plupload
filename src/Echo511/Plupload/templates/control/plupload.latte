@@ -1,0 +1,57 @@
+<div id="{$id|noescape}uploader">
+    <p>Your browser doesn't have Flash, Silverlight or HTML5 support.</p>
+</div>
+
+<script type="text/javascript">	
+$(function() {
+    $("#{$id|noescape}uploader").plupload({
+        runtimes : 'html5',
+        url : {link Upload!, id => $id},
+        max_file_size : {$maxFileSize}, 
+        chunk_size: {$maxChunkSize},
+ 
+        {if $allowedExtensions != '*'}
+        filters: [
+            { title : "Allowed files", extensions : "{$allowedExtensions|noescape}" }
+        ],
+        {/if}
+
+        rename: true,
+        sortable: true, 
+        dragdrop: true,
+ 
+        views: {
+            list: true,
+            thumbs: true,
+            active: 'thumbs'
+        },
+        
+        headers: {'X-Requested-With': 'XMLHttpRequest'},
+    
+        init: {
+            FileUploaded: function(up, file, info) {
+                var json = jQuery.parseJSON(info.response);
+                try {
+                    $.nette.ext('snippets').updateSnippets(json.snippets);
+                } catch (err) {
+                    try {
+                        $.nette.success(json);
+                    } catch (err) {}
+                }
+            },
+            UploadComplete: function(up, files) {
+                    $.get({link UploadComplete!, id => $id}, function(json) {
+                        try {
+                            $.nette.ext('snippets').updateSnippets(json.snippets);
+                        } catch (err) {
+                            try {
+                                $.nette.success(json);
+                            } catch (err) {}
+                        }
+                    });
+            }
+        }
+    });
+
+});
+</script>
