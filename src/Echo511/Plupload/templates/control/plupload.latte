@@ -31,24 +31,12 @@ $(function() {
         init: {
             FileUploaded: function(up, file, info) {
                 var json = jQuery.parseJSON(info.response);
-                try {
-                    $.nette.ext('snippets').updateSnippets(json.snippets);
-                } catch (err) {
-                    try {
-                        $.nette.success(json);
-                    } catch (err) {}
-                }
+                $.nette.success(json);
             },
             UploadComplete: function(up, files) {
-                    $.get({link UploadComplete!, id => $id}, function(json) {
-                        try {
-                            $.nette.ext('snippets').updateSnippets(json.snippets);
-                        } catch (err) {
-                            try {
-                                $.nette.success(json);
-                            } catch (err) {}
-                        }
-                    });
+                $.get({link UploadComplete!, id => $id}, function(json) {
+                    $.nette.success(json);
+                });
             }
         }
     });
