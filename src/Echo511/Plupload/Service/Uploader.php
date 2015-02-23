@@ -44,7 +44,7 @@ class Uploader extends Object
 	 * @param callable $onSuccess
 	 * @throws Exception
 	 */
-	public function upload($id, callable $onSuccess)
+	public function upload($id, $onSuccess)
 	{
 		/**
 		 * upload.php

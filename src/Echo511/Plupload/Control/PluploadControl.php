@@ -42,16 +42,16 @@ class PluploadControl extends Control
 	public $templateFile;
 
 	/** @var string */
-	private $id;
+    protected $id;
 
 	/** @var Uploader */
-	private $uploader;
+    protected $uploader;
 
 	/** @var IUploadQueueFactory */
-	private $uploadQueueFactory;
+	protected $uploadQueueFactory;
 
 	/** @var IStorage */
-	private $cacheStorage;
+    protected $cacheStorage;
 
 	/**
 	 * @param Uploader $uploader
@@ -93,11 +93,12 @@ class PluploadControl extends Control
 	public function handleUpload($id)
 	{
 		$this->id = $id;
-		$this->uploader->upload($id, function(Upload $upload) {
-			$uploadQueue = $this->restoreUploadQueue();
+        $self = $this;
+		$this->uploader->upload($id, function(Upload $upload) use ($self) {
+            $uploadQueue = $self->restoreUploadQueue();
 			$uploadQueue->addUpload($upload);
-			$this->onFileUploaded($uploadQueue);
-			$this->storeUploadQueue($uploadQueue);
+            $self->onFileUploaded($uploadQueue);
+            $self->storeUploadQueue($uploadQueue);
 		});
 	}
 
@@ -119,11 +120,13 @@ class PluploadControl extends Control
 	 * Restore upload queue from previous request.
 	 * @return UploadQueue
 	 */
-	private function restoreUploadQueue()
+	public function restoreUploadQueue()
 	{
 		$cache = new Cache($this->cacheStorage, get_class());
-		return $cache->load($this->id, function() {
-				return $this->uploadQueueFactory->create($this->id);
+        $uploadQueueFactory = $this->uploadQueueFactory;
+        $id = $this->id;
+		return $cache->load($this->id, function() use ($uploadQueueFactory, $id) {
+				return $uploadQueueFactory->create($id);
 			});
 	}
 
@@ -133,7 +136,7 @@ class PluploadControl extends Control
 	 * Store upload queue between requests.
 	 * @param UploadQueue $uploadQueue
 	 */
-	private function storeUploadQueue(UploadQueue $uploadQueue)
+    public function storeUploadQueue(UploadQueue $uploadQueue)
 	{
 		$cache = new Cache($this->cacheStorage, get_class());
 		$cache->save($this->id, $uploadQueue, array(
