@@ -31,11 +31,15 @@ $(function() {
         init: {
             FileUploaded: function(up, file, info) {
                 var json = jQuery.parseJSON(info.response);
-                $.nette.success(json);
+                if (json.snippets) {
+                    $.nette.ext('snippets').updateSnippets(json.snippets);
+                }
             },
             UploadComplete: function(up, files) {
                 $.get({link UploadComplete!, id => $id}, function(json) {
-                    $.nette.success(json);
+                    if (json.snippets) {
+                        $.nette.ext('snippets').updateSnippets(json.snippets);
+                    }
                 });
             }
         }
