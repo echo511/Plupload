@@ -110,7 +110,7 @@ class Uploader extends Object
 		@fclose($in);
 
 		// Check if file has been uploaded
-		if (!$chunks || $chunk == $chunks - 1) {
+		if ((!$chunks || $chunk == $chunks - 1) && filesize("{$filePath}.part") > 0){
 			rename("{$filePath}.part", $filePath);
 			$this->cleanTempDir();
 			$onSuccess($this->uploadFactory->create($filePath, $fileName));
