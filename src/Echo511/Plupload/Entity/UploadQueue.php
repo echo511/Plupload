@@ -6,14 +6,12 @@
 
 namespace Echo511\Plupload\Entity;
 
-use Nette\Object;
-
 /**
  * Queue of already uploaded files by unique widget. On page refresh id refreshes.
  * 
  * @author Nikolas Tsiongas
  */
-class UploadQueue extends Object
+class UploadQueue
 {
 
 	/** @var string */

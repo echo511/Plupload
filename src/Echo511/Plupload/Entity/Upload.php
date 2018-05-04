@@ -6,14 +6,13 @@
 
 namespace Echo511\Plupload\Entity;
 
-use Nette\Object;
 
 /**
  * Uploaded file envelope.
  * 
  * @author Nikolas Tsiongas
  */
-class Upload extends Object
+class Upload
 {
 
 	/** @var string */

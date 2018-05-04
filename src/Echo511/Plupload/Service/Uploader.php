@@ -10,12 +10,11 @@ namespace Echo511\Plupload\Service;
 
 use Echo511\Plupload\Entity\IUploadFactory;
 use Exception;
-use Nette\Object;
 
 /**
  * Service handeling upload.
  */
-class Uploader extends Object
+class Uploader
 {
 
 	/** @var string */
