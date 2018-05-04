@@ -6,20 +6,13 @@
 
 namespace Echo511\Plupload\Entity;
 
-\Echo511\Plupload\Compatibility\Bootstrap::init();
-
-use Echo511\Plupload\LegacyObject;
-use Echo511\Plupload\SmartObject;
-
 /**
  * Queue of already uploaded files by unique widget. On page refresh id refreshes.
  * 
  * @author Nikolas Tsiongas
  */
-class UploadQueue extends LegacyObject
+class UploadQueue
 {
-
-	use SmartObject;
 
 	/** @var string */
 	private $id;

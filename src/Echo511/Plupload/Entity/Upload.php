@@ -6,20 +6,14 @@
 
 namespace Echo511\Plupload\Entity;
 
-\Echo511\Plupload\Compatibility\Bootstrap::init();
-
-use Echo511\Plupload\LegacyObject;
-use Echo511\Plupload\SmartObject;
 
 /**
  * Uploaded file envelope.
  * 
  * @author Nikolas Tsiongas
  */
-class Upload extends LegacyObject
+class Upload
 {
-
-	use SmartObject;
 
 	/** @var string */
 	private $filename;

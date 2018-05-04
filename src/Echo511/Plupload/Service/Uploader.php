@@ -8,20 +8,14 @@
 
 namespace Echo511\Plupload\Service;
 
-\Echo511\Plupload\Compatibility\Bootstrap::init();
-
 use Echo511\Plupload\Entity\IUploadFactory;
 use Exception;
-use Echo511\Plupload\LegacyObject;
-use Echo511\Plupload\SmartObject;
 
 /**
  * Service handeling upload.
  */
-class Uploader extends LegacyObject
+class Uploader
 {
-
-	use SmartObject;
 
 	/** @var string */
 	private $tempDir;
