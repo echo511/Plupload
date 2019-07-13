@@ -21,10 +21,8 @@ class PluploadExtension extends CompilerExtension
 	 */
 	public function loadConfiguration()
 	{
-		$builder = $this->getContainerBuilder();
 		$config = $this->loadFromFile(__DIR__ . '/../config/plupload.neon');
-		$namespace = 'Echo511.Plupload.DI';
-		$this->compiler->parseServices($builder, $config, $namespace);
+		$this->compiler->loadDefinitionsFromConfig($config['services']);
 	}
 
 
