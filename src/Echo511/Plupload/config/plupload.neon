@@ -1,19 +1,19 @@
 services:    
     control:
-        class: Echo511\Plupload\Control\PluploadControl
+        factory: Echo511\Plupload\Control\PluploadControl
         implement: Echo511\Plupload\Control\IPluploadControlFactory
 
     uploader:
-        class: Echo511\Plupload\Service\Uploader(%tempDir%/echo511.plupload)
+        factory: Echo511\Plupload\Service\Uploader(%tempDir%/echo511.plupload)
 
     uploadQueue:
-        class: Echo511\Plupload\Entity\UploadQueue
+        factory: Echo511\Plupload\Entity\UploadQueue
         implement: Echo511\Plupload\Entity\IUploadQueueFactory
         parameters: [id]
         arguments: [%id%]
 
     upload:
-        class: Echo511\Plupload\Entity\Upload
+        factory: Echo511\Plupload\Entity\Upload
         implement: Echo511\Plupload\Entity\IUploadFactory
         parameters: [filename, name]
         arguments: [%filename%, %name%]
