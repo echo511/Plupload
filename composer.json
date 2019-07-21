@@ -1,9 +1,8 @@
 {
-  "name": "echo511/plupload",
+  "name": "irkallacz/plupload",
   "type": "library",
   "description": "Plupload component for Nette Framework.",
-  "keywords": [
-    "echo511",
+  "keywords": 
     "nette",
     "plupload"
   ],
