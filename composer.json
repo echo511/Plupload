@@ -2,7 +2,7 @@
   "name": "irkallacz/plupload",
   "type": "library",
   "description": "Plupload component for Nette Framework.",
-  "keywords": 
+  "keywords": [ 
     "nette",
     "plupload"
   ],
